@@ -1,30 +1,67 @@
 <!DOCTYPE html>
-<html>
+    <html lang="en">
     <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="user-scalable=0, initial-scale=1, minium-scale=1, maximum-scale=1, width=device-width, minimal-ui=1">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>CW Adventure World</title>
+		<style>
+            /* Reset CSS: Please avoid making changes here unless you know what you're doing :) */
+            *,
+            *::before,
+            *::after {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+    
+            html, body {
+                width: 100%;
+                height: 100%;
+            }
+    
+            body {
+                line-height: 1;
+                font-family: Arial, sans-serif;
+                background-color: #040218;
+            }
+    
+            ol, ul {
+                list-style: none;
+            }
+    
+            img, video {
+                max-width: 100%;
+                height: auto;
+                display: block;
+            }
+    
+            a {
+                text-decoration: none;
+                color: inherit;
+            }
+        </style>
+    </head>
     </head>
     <body>
-        <div id="phaser-game"></div>
-        <script src="assets/js/lib/phaser.min.js" charset="utf-8"></script>
+		<div id="game-container"></div>
+        <script src="./phaser.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/node-uuid/1.4.8/uuid.min.js"></script>
-        <script src="assets/js/game_manager/utils.js" charset="utf-8"></script>
-        <script src="assets/js/game_manager/GameManager.js" charset="utf-8"></script>
-        <script src="assets/js/game_manager/MonsterModel.js" charset="utf-8"></script>
-        <script src="assets/js/game_manager/PlayerModel.js" charset="utf-8"></script>
-        <script src="assets/js/game_manager/ChestModel.js" charset="utf-8"></script>
-        <script src="assets/js/game_manager/Spawner.js" charset="utf-8"></script>
-        <script src="assets/js/classes/player/Player.js" charset="utf-8"></script>
-        <script src="assets/js/classes/player/PlayerContainer.js" charset="utf-8"></script>
-        <script src="assets/js/classes/Monster.js" charset="utf-8"></script>
-        <script src="assets/js/classes/Chest.js" charset="utf-8"></script>
-        <script src="assets/js/classes/UiButton.js" charset="utf-8"></script>
-        <script src="assets/js/classes/Map.js" charset="utf-8"></script>
-        <script src="assets/js/scenes/BootScene.js" charset="utf-8"></script>
-        <script src="assets/js/scenes/TitleScene.js" charset="utf-8"></script>
-        <script src="assets/js/scenes/GameScene.js" charset="utf-8"></script>
-        <script src="assets/js/scenes/UiScene.js" charset="utf-8"></script>
-        <script src="assets/js/main.js" charset="utf-8"></script>
+        <script type="module" src="src/game_manager/utils.js" charset="utf-8"></script>
+        <script type="module" src="src/game_manager/GameManager.js" charset="utf-8"></script>
+        <script type="module" src="src/game_manager/MonsterModel.js" charset="utf-8"></script>
+        <script type="module" src="src/game_manager/PlayerModel.js" charset="utf-8"></script>
+        <script type="module" src="src/game_manager/ChestModel.js" charset="utf-8"></script>
+        <script type="module" src="src/game_manager/Spawner.js" charset="utf-8"></script>
+        <script type="module" src="src/classes/player/Player.js" charset="utf-8"></script>
+        <script type="module" src="src/classes/player/PlayerContainer.js" charset="utf-8"></script>
+        <script type="module" src="src/classes/Monster.js" charset="utf-8"></script>
+        <script type="module" src="src/classes/Chest.js" charset="utf-8"></script>
+        <script type="module" src="src/classes/UiButton.js" charset="utf-8"></script>
+        <script type="module" src="src/classes/Map.js" charset="utf-8"></script>
+        <script type="module" src="src/scenes/Boot.js" charset="utf-8"></script>
+        <script type="module" src="src/scenes/Title.js" charset="utf-8"></script>
+        <script type="module" src="src/scenes/Game.js" charset="utf-8"></script>
+        <script type="module" src="src/scenes/UiScene.js" charset="utf-8"></script>
+		<script type="module" src="./src/main.js"></script>
     </body>
 </html>

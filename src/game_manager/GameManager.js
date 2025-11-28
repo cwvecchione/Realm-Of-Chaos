@@ -1,4 +1,4 @@
-class GameManager {
+export default class GameManager {
   constructor(scene, mapData) {
     this.scene = scene;
     this.mapData = mapData;

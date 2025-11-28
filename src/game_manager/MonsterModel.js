@@ -1,4 +1,4 @@
-class MonsterModel {
+export default class MonsterModel {
   constructor(x, y, gold, spawnerId, frame, health, attack) {
     this.id = `${spawnerId}-${uuid.v4()}`;
     this.spawnerId = spawnerId;

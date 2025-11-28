@@ -1,4 +1,4 @@
-class UiScene extends Phaser.Scene {
+export default class Ui extends Phaser.Scene {
   constructor() {
     super('Ui');
   }

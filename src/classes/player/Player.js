@@ -1,4 +1,4 @@
-class Player extends Phaser.Physics.Arcade.Image {
+export default class Player extends Phaser.Physics.Arcade.Image {
   constructor(scene, x, y, key, frame) {
     super(scene, x, y, key, frame);
     this.scene = scene; // the scene this container will be added to

@@ -1,4 +1,8 @@
-class Spawner {
+import { ChestModel } from '../game_manager/ChestModel';
+import { MonsterModel } from '../game_manager/MonsterModel';
+import { SpawnerType, randomNumber } from '../game_manager/utils';
+
+export default class Spawner {
   constructor(config, spawnLocations, addObject, deleteObject, moveObjects) {
     this.id = config.id;
     this.spawnInterval = config.spawnInterval;

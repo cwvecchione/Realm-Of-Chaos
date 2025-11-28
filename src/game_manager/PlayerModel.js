@@ -1,4 +1,4 @@
-class PlayerModel {
+export default class PlayerModel {
   constructor(spawnLocations) {
     this.health = 10;
     this.maxHealth = 10;

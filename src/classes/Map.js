@@ -1,4 +1,4 @@
-class Map {
+export default class Map {
   constructor(scene, key, tileSetName, bgLayerName, blockedLayerName) {
     this.scene = scene; // the scene this map belongs to
     this.key = key; // Tiled JSON file key name
