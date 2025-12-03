@@ -3,6 +3,7 @@ import Chest from '../classes/Chest.js';
 import Monster from '../classes/Monster.js';
 import Map from '../classes/Map.js';
 import GameManager from '../game_manager/GameManager.js';
+import Item from '../classes/Item';
 
 export class Game extends Phaser.Scene
 {
@@ -13,6 +14,8 @@ export class Game extends Phaser.Scene
 
     init() {
         this.scene.launch('Ui');
+
+        this.selectedCharacter = data.selectedCharacter || 0;
     }
     
     create ()
@@ -23,6 +26,11 @@ export class Game extends Phaser.Scene
         this.createInput();
 
         this.createGameManager();
+
+        // handle game resize
+        this.scale.on('resize', this.resize, this);
+        // resize our game
+        this.resize({ height: this.scale.height, width: this.scale.width });
     }
 
     update() {
@@ -96,6 +104,32 @@ export class Game extends Phaser.Scene
         monster.setPosition(monsterObject.x, monsterObject.y);
         monster.makeActive();
         }
+
+        this.socket.on('currentItems', (items) => {
+            Object.keys(items).forEach((id) => {
+            this.spawnItem(items[id]);
+            });
+        });
+
+        this.socket.on('itemSpawned', (item) => {
+            this.spawnItem(item);
+        });
+
+        this.socket.on('updateItems', (playerObject) => {
+            this.player.items = playerObject.playerItems;
+            this.player.maxHealth = playerObject.maxHealth;
+            this.player.attackValue = playerObject.attack;
+            this.player.defenseValue = playerObject.defense;
+            this.player.updateHealthBar();
+        });
+
+        this.socket.on('itemRemoved', (itemId) => {
+            this.items.getChildren().forEach((item) => {
+            if (item.id === itemId) {
+                item.makeInactive();
+            }
+            });
+        });
     }
 
     createInput() {
@@ -111,6 +145,8 @@ export class Game extends Phaser.Scene
         this.physics.add.collider(this.monsters, this.map.blockedLayer);
         // check for overlaps between the player's weapon and monster game objects
         this.physics.add.overlap(this.player.weapon, this.monsters, this.enemyOverlap, null, this);
+        // check for overlaps between player and item game objects
+        this.physics.add.overlap(this.player, this.items, this.collectItem, null, this);
     }
 
     enemyOverlap(weapon, enemy) {
@@ -126,9 +162,20 @@ export class Game extends Phaser.Scene
         this.events.emit('pickUpChest', chest.id, player.id);
     }
 
+    collectItem(player, item) {
+        this.socket.emit('pickUpItem', item.id);
+    }
+
     createMap() {
         // create map
         this.map = new Map(this, 'map', 'background', 'background', 'blocked');
+    }
+
+    resize(gameSize) {
+        const { width, height } = gameSize;
+
+        this.cameras.resize(width, height);
+        this.dialogWindow.resize(gameSize);
     }
 
     createGameManager() {
