@@ -38,29 +38,29 @@ export class Preloader extends Phaser.Scene {
     }
 
     loadImages() {
-        this.load.image('button1', 'assets/images/ui/blue_button01.png');
-        this.load.image('button2', 'assets/images/ui/blue_button02.png');
+        this.load.image('button1', '/images/ui/blue_button01.png');
+        this.load.image('button2', '/images/ui/blue_button02.png');
         // load the map tileset image
-        this.load.image('background', 'assets/level/background-extruded.png');
+        this.load.image('background', '/level/background-extruded.png');
     }
 
     loadSpriteSheets() {
-        this.load.spritesheet('items', 'assets/images/items.png', { frameWidth: 32, frameHeight: 32 });
-        this.load.spritesheet('characters', 'assets/images/characters.png', { frameWidth: 32, frameHeight: 32, startFrame: 9 });
-        this.load.spritesheet('monsters', 'assets/images/monsters.png', { frameWidth: 32, frameHeight: 32 });
+        this.load.spritesheet('items', '/images/items.png', { frameWidth: 32, frameHeight: 32 });
+        this.load.spritesheet('characters', '/images/characters.png', { frameWidth: 32, frameHeight: 32, startFrame: 9 });
+        this.load.spritesheet('monsters', '/images/monsters.png', { frameWidth: 32, frameHeight: 32 });
     }
 
     loadAudio() {
-        this.load.audio('goldSound', ['assets/audio/Pickup.wav']);
-        this.load.audio('enemyDeath', ['assets/audio/EnemyDeath.wav']);
-        this.load.audio('playerAttack', ['assets/audio/PlayerAttack.wav']);
-        this.load.audio('playerDamage', ['assets/audio/PlayerDamage.wav']);
-        this.load.audio('playerDeath', ['assets/audio/PlayerDeath.wav']);
+        this.load.audio('goldSound', ['/audio/Pickup.wav']);
+        this.load.audio('enemyDeath', ['/audio/EnemyDeath.wav']);
+        this.load.audio('playerAttack', ['/audio/PlayerAttack.wav']);
+        this.load.audio('playerDamage', ['/audio/PlayerDamage.wav']);
+        this.load.audio('playerDeath', ['/audio/PlayerDeath.wav']);
     }
 
     loadTileMap() {
         // map made with Tiled in JSON format
-        this.load.tilemapTiledJSON('map', 'assets/level/large_level.json');
+        this.load.tilemapTiledJSON('map', '/level/large_level.json');
     }
 
     create ()

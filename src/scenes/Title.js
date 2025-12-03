@@ -1,3 +1,5 @@
+import UiButton from '../classes/UiButton.js';
+
 export class Title extends Phaser.Scene {
     constructor() {
         super('Title');
@@ -11,8 +13,6 @@ export class Title extends Phaser.Scene {
 
     // create the Play game button
     this.startGameButton = new UiButton(this, this.scale.width / 2, this.scale.height * 0.65, 'button1', 'button2', 'Start', this.startScene.bind(this, 'Game'));
-        
-        EventBus.emit('current-scene-ready', this);
     }
 
     startScene(targetScene) {

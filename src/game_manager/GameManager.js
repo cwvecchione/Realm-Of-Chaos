@@ -1,3 +1,7 @@
+import Spawner from './Spawner.js';
+import { SpawnerType } from './utils.js';
+import PlayerModel from './PlayerModel.js';
+
 export default class GameManager {
   constructor(scene, mapData) {
     this.scene = scene;
@@ -7,10 +11,12 @@ export default class GameManager {
     this.chests = {};
     this.monsters = {};
     this.players = {};
+    this.items = {};
 
     this.playerLocations = [];
     this.chestLocations = {};
     this.monsterLocations = {};
+    this.itemLocations = itemData.locations;
   }
 
   setup() {
@@ -47,6 +53,19 @@ export default class GameManager {
   }
 
   setupEventListener() {
+    this.scene.events.on('pickUpItem', (itemId) => {
+        // update the spawner
+        if (this.items[itemId]) {
+          if (this.players[playerId].canPickupItem()) {
+            this.players[playerId].addItem(this.items[itemId]);
+            this.scene.events.emit('updateItems', this.players[socket.id]);
+
+            // removing the item
+            this.spawners[this.items[itemId].spawnerId].removeObject(itemId);
+          }
+        }
+      });
+
     this.scene.events.on('pickUpChest', (chestId, playerId) => {
       // update the spawner
       if (this.chests[chestId]) {
@@ -107,6 +126,8 @@ export default class GameManager {
   }
 
   setupSpawners() {
+    // Ensure required classes are available
+    // (imports added at file top)
     const config = {
       spawnInterval: 3000,
       limit: 3,
@@ -142,6 +163,19 @@ export default class GameManager {
       );
       this.spawners[spawner.id] = spawner;
     });
+
+    // create item spawner
+    config.id = 'item';
+    config.spawnerType = SpawnerType.ITEM;
+    config.limit = 3;
+    config.spawnInterval = 1000 * 60 * 5;
+    spawner = new Spawner(
+      config,
+      this.itemLocations,
+      this.addItem.bind(this),
+      this.deleteItem.bind(this),
+    );
+    this.spawners[spawner.id] = spawner;
   }
 
   spawnPlayer() {
@@ -170,5 +204,15 @@ export default class GameManager {
 
   moveMonsters() {
     this.scene.events.emit('monsterMovement', this.monsters);
+  }
+
+    addItem(itemId, item) {
+    this.items[itemId] = item;
+    this.io.emit('itemSpawned', item);
+  }
+
+  deleteItem(itemId) {
+    delete this.items[itemId];
+    this.io.emit('itemRemoved', itemId);
   }
 }

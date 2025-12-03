@@ -5,6 +5,8 @@ export const Direction = {
   DOWN: 'DOWN',
 };
 
+import Player from './Player.js';
+
 export default class PlayerContainer extends Phaser.GameObjects.Container {
   constructor(scene, x, y, key, frame, health, maxHealth, id, attackAudio) {
     super(scene, x, y);

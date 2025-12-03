@@ -1,6 +1,6 @@
-import { ChestModel } from '../game_manager/ChestModel';
-import { MonsterModel } from '../game_manager/MonsterModel';
-import { SpawnerType, randomNumber } from '../game_manager/utils';
+import ChestModel from './ChestModel.js';
+import MonsterModel from './MonsterModel.js';
+import { SpawnerType, randomNumber } from './utils.js';
 
 export default class Spawner {
   constructor(config, spawnLocations, addObject, deleteObject, moveObjects) {

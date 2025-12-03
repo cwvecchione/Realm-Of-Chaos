@@ -1,3 +1,9 @@
+import PlayerContainer from '../classes/player/PlayerContainer.js';
+import Chest from '../classes/Chest.js';
+import Monster from '../classes/Monster.js';
+import Map from '../classes/Map.js';
+import GameManager from '../game_manager/GameManager.js';
+
 export class Game extends Phaser.Scene
 {
     constructor()
@@ -17,8 +23,6 @@ export class Game extends Phaser.Scene
         this.createInput();
 
         this.createGameManager();
-
-        EventBus.emit('current-scene-ready', this);
     }
 
     update() {

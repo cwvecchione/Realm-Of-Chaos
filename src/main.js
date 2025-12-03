@@ -2,9 +2,8 @@ import { Boot } from './scenes/Boot.js';
 import { Preloader } from './scenes/Preloader.js';
 import { Title } from './scenes/Title.js'
 import { Game } from './scenes/Game.js';
-import { Ui } from './scenes/UiScene.js';
+import Ui from './scenes/UiScene.js';
 import { GameOver } from './scenes/GameOver.js';
-import { version } from 'react';
 
 const config = {
     type: Phaser.AUTO,

@@ -1,3 +1,5 @@
+import { randomNumber } from './utils.js';
+
 export default class MonsterModel {
   constructor(x, y, gold, spawnerId, frame, health, attack) {
     this.id = `${spawnerId}-${uuid.v4()}`;
