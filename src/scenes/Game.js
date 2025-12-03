@@ -3,7 +3,7 @@ import Chest from '../classes/Chest.js';
 import Monster from '../classes/Monster.js';
 import Map from '../classes/Map.js';
 import GameManager from '../game_manager/GameManager.js';
-import Item from '../classes/Item';
+import Item from '../classes/Item.js';
 
 export class Game extends Phaser.Scene
 {
@@ -104,32 +104,21 @@ export class Game extends Phaser.Scene
         monster.setPosition(monsterObject.x, monsterObject.y);
         monster.makeActive();
         }
+    }
 
-        this.socket.on('currentItems', (items) => {
-            Object.keys(items).forEach((id) => {
-            this.spawnItem(items[id]);
-            });
-        });
-
-        this.socket.on('itemSpawned', (item) => {
-            this.spawnItem(item);
-        });
-
-        this.socket.on('updateItems', (playerObject) => {
-            this.player.items = playerObject.playerItems;
-            this.player.maxHealth = playerObject.maxHealth;
-            this.player.attackValue = playerObject.attack;
-            this.player.defenseValue = playerObject.defense;
-            this.player.updateHealthBar();
-        });
-
-        this.socket.on('itemRemoved', (itemId) => {
-            this.items.getChildren().forEach((item) => {
-            if (item.id === itemId) {
-                item.makeInactive();
-            }
-            });
-        });
+    spawnItem(itemObject) {
+        let item = this.items.getFirstDead();
+        if (!item) {
+            item = new Item(this, itemObject.x * 2, itemObject.y * 2, 'tools', itemObject.frame, itemObject.id);
+            // add item to items group
+            this.items.add(item);
+        } else {
+            item.id = itemObject.id;
+            item.frame = itemObject.frame;
+            item.setFrame(item.frame);
+            item.setPosition(itemObject.x * 2, itemObject.y * 2);
+            item.makeActive();
+        }
     }
 
     createInput() {
@@ -235,8 +224,34 @@ export class Game extends Phaser.Scene
         });
 
         this.events.on('respawnPlayer', (playerObject) => {
-        this.playerDeathAudio.play();
-        this.player.respawn(playerObject);
+            this.playerDeathAudio.play();
+            this.player.respawn(playerObject);
+        });
+
+        this.events.on('currentItems', (items) => {
+            Object.keys(items).forEach((id) => {
+                this.spawnItem(items[id]);
+            });
+        });
+
+        this.events.on('itemSpawned', (item) => {
+            this.spawnItem(item);
+        });
+
+        this.events.on('updateItems', (playerObject) => {
+            this.player.items = playerObject.playerItems;
+            this.player.maxHealth = playerObject.maxHealth;
+            this.player.attackValue = playerObject.attack;
+            this.player.defenseValue = playerObject.defense;
+            this.player.updateHealthBar();
+        });
+
+        this.events.on('itemRemoved', (itemId) => {
+            this.items.getChildren().forEach((item) => {
+                if (item.id === itemId) {
+                    item.makeInactive();
+                }
+            });
         });
 
         this.gameManager = new GameManager(this, this.map.map.objects);

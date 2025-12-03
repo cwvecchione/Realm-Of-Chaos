@@ -1,5 +1,4 @@
-import * as Phaser from 'phaser';
-import InventoryWindow from '../classes/InventoryWindow';
+import InventoryWindow from '../classes/InventoryWindow.js';
 
 export default class UiScene extends Phaser.Scene {
   constructor() {

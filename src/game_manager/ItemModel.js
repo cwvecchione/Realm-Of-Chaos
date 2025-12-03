@@ -1,5 +1,3 @@
-import v4 from 'uuid/v4';
-
 export default class ItemModel {
   constructor(x, y, spawnerId, name, frame, attackValue, defenseValue, healthValue) {
     this.id = `${spawnerId}-${v4()}`;

@@ -4,6 +4,7 @@ import { Title } from './scenes/Title.js'
 import { Game } from './scenes/Game.js';
 import Ui from './scenes/UiScene.js';
 import { GameOver } from './scenes/GameOver.js';
+import {CharacterSelection} from './scenes/CharacterSelectionScene.js';
 
 const config = {
     type: Phaser.AUTO,
@@ -27,6 +28,7 @@ const config = {
         Boot,
         Preloader,
         Title,
+        CharacterSelection,
         Game,
         Ui,
         GameOver

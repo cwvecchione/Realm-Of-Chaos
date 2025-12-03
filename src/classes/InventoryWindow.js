@@ -1,4 +1,4 @@
-import ModalWindow from './ModalWindow';
+import ModalWindow from './ModalWindow.js';
 
 export default class InventoryWindow extends ModalWindow {
   constructor(scene, opts) {

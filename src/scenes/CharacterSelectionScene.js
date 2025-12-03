@@ -1,6 +1,4 @@
-import * as Phaser from 'phaser';
-
-export default class CharacterSelectionScene extends Phaser.Scene {
+export class CharacterSelection extends Phaser.Scene {
   constructor() {
     super('CharacterSelection');
   }

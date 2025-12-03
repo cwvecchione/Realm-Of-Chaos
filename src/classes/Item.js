@@ -1,5 +1,3 @@
-import * as Phaser from 'phaser';
-
 export default class Item extends Phaser.Physics.Arcade.Image {
   constructor(scene, x, y, key, frame, id) {
     super(scene, x, y, key, frame);
