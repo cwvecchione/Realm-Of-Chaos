@@ -16,7 +16,7 @@ export default class GameManager {
     this.playerLocations = [];
     this.chestLocations = {};
     this.monsterLocations = {};
-    this.itemLocations = itemData.locations;
+    this.itemLocations = {};
   }
 
   setup() {

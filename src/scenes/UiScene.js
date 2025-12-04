@@ -53,7 +53,6 @@ export default class UiScene extends Phaser.Scene {
         && !gameObjects.includes(this.inventoryWindow.inventoryItems[2].discardButton)
         && !gameObjects.includes(this.inventoryWindow.inventoryItems[3].discardButton)
         && !gameObjects.includes(this.inventoryWindow.inventoryItems[4].discardButton)) {
-        this.gameScene.dialogWindow.rect.setInteractive();
         this.inventoryWindow.hideWindow();
         this.showInventory = false;
       }
@@ -84,10 +83,8 @@ export default class UiScene extends Phaser.Scene {
   toggleInventory(playerObject, mainPlayer) {
     this.showInventory = !this.showInventory;
     if (this.showInventory) {
-      this.gameScene.dialogWindow.rect.disableInteractive();
       this.inventoryWindow.showWindow(playerObject, mainPlayer);
     } else {
-      this.gameScene.dialogWindow.rect.setInteractive();
       this.inventoryWindow.hideWindow();
     }
   }

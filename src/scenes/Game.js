@@ -15,7 +15,7 @@ export class Game extends Phaser.Scene
     init() {
         this.scene.launch('Ui');
 
-        this.selectedCharacter = data.selectedCharacter || 0;
+        //this.selectedCharacter = data.selectedCharacter || 0;
     }
     
     create ()
@@ -164,7 +164,6 @@ export class Game extends Phaser.Scene
         const { width, height } = gameSize;
 
         this.cameras.resize(width, height);
-        this.dialogWindow.resize(gameSize);
     }
 
     createGameManager() {
