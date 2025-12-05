@@ -58,7 +58,7 @@ export default class GameManager {
         if (this.items[itemId]) {
           if (this.players[playerId].canPickupItem()) {
             this.players[playerId].addItem(this.items[itemId]);
-            this.scene.events.emit('updateItems', this.players[socket.id]);
+            this.scene.events.emit('updateItems', this.players[playerId]);
 
             // removing the item
             this.spawners[this.items[itemId].spawnerId].removeObject(itemId);

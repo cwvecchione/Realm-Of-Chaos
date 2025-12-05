@@ -12,10 +12,9 @@ export class Game extends Phaser.Scene
         super('Game');
     }
 
-    init() {
+    init(data) {
         this.scene.launch('Ui');
-
-        //this.selectedCharacter = data.selectedCharacter || 0;
+        this.selectedCharacter = data.selectedCharacter || 0;
     }
     
     create ()
