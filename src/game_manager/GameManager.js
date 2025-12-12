@@ -3,9 +3,10 @@ import { SpawnerType } from './utils.js';
 import PlayerModel from './PlayerModel.js';
 
 export default class GameManager {
-  constructor(scene, mapData) {
+  constructor(scene, mapData, selectedCharacter = 0) {
     this.scene = scene;
     this.mapData = mapData;
+    this.selectedCharacter = selectedCharacter;
 
     this.spawners = {};
     this.chests = {};
@@ -179,7 +180,7 @@ export default class GameManager {
   }
 
   spawnPlayer() {
-    const player = new PlayerModel(this.playerLocations);
+    const player = new PlayerModel(this.playerLocations, this.selectedCharacter);
     this.players[player.id] = player;
     this.scene.events.emit('spawnPlayer', player);
   }

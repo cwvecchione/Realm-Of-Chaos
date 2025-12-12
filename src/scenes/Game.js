@@ -50,7 +50,7 @@ export class Game extends Phaser.Scene
         playerObject.x * 2,
         playerObject.y * 2,
         'characters',
-        0,
+        playerObject.frame,
         playerObject.health,
         playerObject.maxHealth,
         playerObject.id,
@@ -252,7 +252,7 @@ export class Game extends Phaser.Scene
             });
         });
 
-        this.gameManager = new GameManager(this, this.map.map.objects);
+        this.gameManager = new GameManager(this, this.map.map.objects, this.selectedCharacter);
         this.gameManager.setup();
     }
 }

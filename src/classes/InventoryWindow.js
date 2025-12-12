@@ -205,14 +205,17 @@ export default class InventoryWindow extends ModalWindow {
     this.goldStatText.setText(playerObject.gold);
 
     // hide inventory items that are not needed
-    for (let i = Object.keys(playerObject.items).length; i < 5; i += 1) {
+    const itemCount = playerObject.items ? Object.keys(playerObject.items).length : 0;
+    for (let i = itemCount; i < 5; i += 1) {
       this.hideInventoryItem(i);
     }
 
     // populate inventory items
-    const keys = Object.keys(playerObject.items);
-    for (let i = 0; i < keys.length; i += 1) {
-      this.updateInventoryItem(playerObject.items[keys[i]], i);
+    if (playerObject.items) {
+      const keys = Object.keys(playerObject.items);
+      for (let i = 0; i < keys.length; i += 1) {
+        this.updateInventoryItem(playerObject.items[keys[i]], i);
+      }
     }
   }
 
