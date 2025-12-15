@@ -21,6 +21,7 @@ export class Game extends Phaser.Scene
     {
         this.createMap();
         this.createAudio();
+        this.createPlaylist();
         this.createGroups();
         this.createInput();
 
@@ -42,6 +43,16 @@ export class Game extends Phaser.Scene
         this.playerDamageAudio = this.sound.add('playerDamage', { loop: false, volume: 0.2 });
         this.playerDeathAudio = this.sound.add('playerDeath', { loop: false, volume: 0.2 });
         this.monsterDeathAudio = this.sound.add('enemyDeath', { loop: false, volume: 0.2 });
+    }
+
+    createPlaylist() {
+      this.playlist = ['bgm1', 'bgm2', 'bgm3, bgm4, bgm5']; // Add more as needed
+      this.availableTracks = [...this.playlist]; // Create a list of all tracks
+      this.currentTrackIndex = null;
+      this.currentMusic = null;
+      this.crossfadeDuration = 1500; // ms (1.5s)
+
+      this.playNextTrack();
     }
 
     createPlayer(playerObject) {
@@ -164,6 +175,59 @@ export class Game extends Phaser.Scene
 
         this.cameras.resize(width, height);
     }
+
+    playNextTrack() {
+      // If all tracks have been played, reset the available tracks
+      if (this.availableTracks.length === 0) {
+          this.availableTracks = [...this.playlist];
+      }
+
+      // Randomly pick a track from the available list
+      const randomIndex = Phaser.Math.Between(0, this.availableTracks.length - 1);
+      const nextKey = this.availableTracks[randomIndex];
+
+      // Remove the selected track from the available list
+      this.availableTracks.splice(randomIndex, 1);
+
+      // Create the next track (with volume 0 for crossfade)
+      const nextMusic = this.sound.add(nextKey, {
+          volume: 0,
+          loop: false
+      });
+
+      nextMusic.play();
+
+      // Crossfade if there’s already a track playing
+      if (this.currentMusic) {
+          this.crossfade(this.currentMusic, nextMusic);
+      }
+
+      // When next track finishes, advance to the next track
+      nextMusic.once('complete', () => {
+          this.playNextTrack();
+      });
+
+      this.currentMusic = nextMusic;
+  }
+
+crossfade(oldTrack, newTrack) {
+    const fadeTime = this.crossfadeDuration;
+
+    // Fade OUT the old track
+    this.tweens.add({
+        targets: oldTrack,
+        volume: 0,
+        duration: fadeTime,
+        onComplete: () => oldTrack.stop()
+    });
+
+    // Fade IN the new track
+    this.tweens.add({
+        targets: newTrack,
+        volume: 1,
+        duration: fadeTime
+    });
+}
 
     createGameManager() {
         this.events.on('spawnPlayer', (playerObject) => {
