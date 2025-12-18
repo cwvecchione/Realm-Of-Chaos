@@ -35,6 +35,17 @@ export default class Spawner {
     }
   }
 
+  spawnItem() {
+    const location = this.pickRandomLocation();
+    const randomItem = itemData.items[Math.floor(Math.random() * itemData.items.length)];
+    const item = new ItemModel(
+      location[0], location[1], this.id, randomItem.name,
+      randomItem.frame, getRandomBonusValue(), getRandomBonusValue(), getRandomBonusValue(),
+    );
+    this.objectsCreated.push(item);
+    this.addObject(item.id, item);
+  }
+
   spawnChest() {
     const location = this.pickRandomLocation();
     const chest = new ChestModel(location[0], location[1], randomNumber(10, 20), this.id);

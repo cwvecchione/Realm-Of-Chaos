@@ -113,11 +113,6 @@ export default class GameManager {
 
           // check the player's health, if below 0 have the player respawn
           if (this.players[playerId].health <= 0) {
-            //Fadeout
-              this.cameras.main.shake(500);
-              this.cameras.main.once(Phaser.Cameras.Scene2D.Events.SHAKE_COMPLETE, () => {
-                this.cameras.main.fadeOut(500);
-            });
 
             // update the gold the player has
             this.players[playerId].updateGold(parseInt(-this.players[playerId].gold / 2), 10);
