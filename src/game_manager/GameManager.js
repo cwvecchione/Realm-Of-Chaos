@@ -1,6 +1,7 @@
 import Spawner from './Spawner.js';
 import { SpawnerType } from './utils.js';
 import PlayerModel from './PlayerModel.js';
+import * as itemData from '../../assets/level/tools.json';
 
 export default class GameManager {
   constructor(scene, mapData, selectedCharacter = 0) {
@@ -17,7 +18,7 @@ export default class GameManager {
     this.playerLocations = [];
     this.chestLocations = {};
     this.monsterLocations = {};
-    this.itemLocations = {};
+    this.itemLocations = itemData.locations;
   }
 
   setup() {

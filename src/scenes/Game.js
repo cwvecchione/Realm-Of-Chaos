@@ -46,7 +46,7 @@ export class Game extends Phaser.Scene
     }
 
     createPlaylist() {
-      this.playlist = ['bgm1', 'bgm2', 'bgm3, bgm4, bgm5']; // Add more as needed
+      this.playlist = ['bgm1', 'bgm2', 'bgm3', 'bgm4', 'bgm5']; // Add more as needed
       this.availableTracks = [...this.playlist]; // Create a list of all tracks
       this.currentTrackIndex = null;
       this.currentMusic = null;

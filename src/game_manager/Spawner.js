@@ -1,6 +1,13 @@
 import ChestModel from './ChestModel.js';
 import MonsterModel from './MonsterModel.js';
 import { SpawnerType, randomNumber } from './utils.js';
+import ItemModel from './ItemModel';
+import * as itemData from '../../assets/level/tools.json';
+
+function getRandomBonusValue() {
+  const bonusValues = [-10, -7, -5, 0, 3, 5, 7, 10, 12, 15];
+  return bonusValues[Math.floor(Math.random() * bonusValues.length)];
+}
 
 export default class Spawner {
   constructor(config, spawnLocations, addObject, deleteObject, moveObjects) {
@@ -32,6 +39,8 @@ export default class Spawner {
       this.spawnChest();
     } else if (this.objectType === SpawnerType.MONSTER) {
       this.spawnMonster();
+    } else if (this.objectType === SpawnerType.ITEM) {
+      this.spawnItem();
     }
   }
 
