@@ -1,8 +1,8 @@
 import ChestModel from './ChestModel.js';
 import MonsterModel from './MonsterModel.js';
 import { SpawnerType, randomNumber } from './utils.js';
-import ItemModel from './ItemModel';
-import * as itemData from '../../assets/level/tools.json';
+import ItemModel from './ItemModel.js';
+import * as itemData from '../../assets/level/tools.json' with { type: "json" };
 
 function getRandomBonusValue() {
   const bonusValues = [-10, -7, -5, 0, 3, 5, 7, 10, 12, 15];

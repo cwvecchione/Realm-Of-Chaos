@@ -1,7 +1,7 @@
 import Spawner from './Spawner.js';
 import { SpawnerType } from './utils.js';
 import PlayerModel from './PlayerModel.js';
-import * as itemData from '../../assets/level/tools.json';
+import * as itemData from '../../assets/level/tools.json' with { type: "json" };
 
 export default class GameManager {
   constructor(scene, mapData, selectedCharacter = 0) {
