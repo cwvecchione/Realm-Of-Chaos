@@ -1,4 +1,4 @@
-# CW-Adventure-World-RPG
+# Realm of Chaos
 A simple, adventure-style RPG in a robust world, built using Phaser.js.  Contains a large map for players to explore, monsters to fight, and gold to collect. 
 
 ## Running the Game

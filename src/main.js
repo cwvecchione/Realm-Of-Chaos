@@ -8,7 +8,7 @@ import {CharacterSelection} from './scenes/CharacterSelectionScene.js';
 
 const config = {
     type: Phaser.AUTO,
-    title: 'CW Adventure World',
+    title: 'Realm Of Chaos',
     version: '0.2.0',
     description: '',
     parent: 'game-container',

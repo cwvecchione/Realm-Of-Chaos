@@ -211,11 +211,11 @@ export default class GameManager {
 
     addItem(itemId, item) {
     this.items[itemId] = item;
-    this.io.emit('itemSpawned', item);
+    this.scene.events.emit('itemSpawned', item);
   }
 
   deleteItem(itemId) {
     delete this.items[itemId];
-    this.io.emit('itemRemoved', itemId);
+    this.scene.events.emit('itemRemoved', itemId);
   }
 }
