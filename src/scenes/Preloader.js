@@ -38,17 +38,19 @@ export class Preloader extends Phaser.Scene {
     }
 
     loadImages() {
-        this.load.image('button1', '/images/ui/blue_button01.png');
-        this.load.image('button2', '/images/ui/blue_button02.png');
-        // load the map tileset image
-        this.load.image('background', '/level/background-extruded.png');
+      this.load.image('titleBackground', '/images/titleBackground.png');  
+      this.load.image('button1', '/images/ui/blue_button01.png');
+      this.load.image('button2', '/images/ui/blue_button02.png');
+        
+      // load the map tileset image
+      this.load.image('background', '/level/background-extruded.png');
 
-        this.load.image('inventoryShield', '/images/condensation_shield_new.png');
-        this.load.image('inventoryGold', '/images/gold_pile_16.png');
-        this.load.image('inventoryButton', '/images/instructions.png');
-        this.load.image('inventorySword', '/images/infusion.png');
-        this.load.image('inventoryRemove', '/images/prompt_no.png');
-        this.load.image('inventoryHeart', '/images/regeneration_new.png');
+      this.load.image('inventoryShield', '/images/condensation_shield_new.png');
+      this.load.image('inventoryGold', '/images/gold_pile_16.png');
+      this.load.image('inventoryButton', '/images/instructions.png');
+      this.load.image('inventorySword', '/images/infusion.png');
+      this.load.image('inventoryRemove', '/images/prompt_no.png');
+      this.load.image('inventoryHeart', '/images/regeneration_new.png');
     }
 
     loadSpriteSheets() {
