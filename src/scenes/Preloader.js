@@ -38,7 +38,7 @@ export class Preloader extends Phaser.Scene {
     }
 
     loadImages() {
-      this.load.image('titleBackground', '/images/titleBackground.png');  
+      this.load.image('titleBackground', '/images/titleBackground_v2.png');  
       this.load.image('button1', '/images/ui/blue_button01.png');
       this.load.image('button2', '/images/ui/blue_button02.png');
         
