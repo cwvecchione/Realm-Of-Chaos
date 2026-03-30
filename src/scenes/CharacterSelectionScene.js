@@ -5,9 +5,9 @@ export class CharacterSelection extends Phaser.Scene {
 
   create() {
     // create title text
-    this.titleText = this.add.text(this.scale.width / 2, this.scale.height * 0.1, 'Realm Of Chaos', { fontSize: '64px', fill: '#fff' });
+    this.titleText = this.add.text(this.scale.width / 2, this.scale.height * 0.1, 'Select Your Character', { fontSize: '16px', fill: '#fff' });
     this.titleText.setOrigin(0.5);
-
+    
     // create sprites
     this.createCharacters();
 
@@ -21,11 +21,8 @@ export class CharacterSelection extends Phaser.Scene {
     this.group = this.add.group();
 
     for (let j = 0; j < 3; j += 1) {
-      let x = this.scale.width / 3.5;
-      const y = this.scale.height / 6 * (j + 2);
-
       for (let i = 0 + (8 * j); i < 8 + (8 * j); i += 1) {
-        const character = this.add.image(x, y, 'characters', i).setInteractive();
+        const character = this.add.image(0, 0, 'characters', i).setInteractive();
         character.characterId = i;
         character.setScale(2.5);
         character.setAlpha(0.4);
@@ -33,7 +30,6 @@ export class CharacterSelection extends Phaser.Scene {
         character.on('pointerout', this.pointerout);
         character.on('pointerdown', this.pointerdown.bind(this, character));
         this.group.add(character);
-        x += 96;
       }
     }
   }
@@ -57,9 +53,9 @@ export class CharacterSelection extends Phaser.Scene {
     this.cameras.resize(width, height);
 
     if (width < 1000) {
-      this.titleText.setFontSize('64px');
+      this.titleText.setFontSize('16px');
     } else {
-      this.titleText.setFontSize('128px');
+      this.titleText.setFontSize('16px');
     }
 
     let yDiff = 0;
@@ -77,13 +73,14 @@ export class CharacterSelection extends Phaser.Scene {
       heightDiff = 8;
     }
 
-    this.group.getChildren().forEach((child, index) => {
-      if (index !== 0) {
-        yDiff = parseInt(index / charactersPerRow, 10);
-        xDiff = index % charactersPerRow;
-      }
+    const rowWidth = (charactersPerRow - 1) * 96;
+    const startX = width / 2 - rowWidth / 2;
 
-      const x = width / 3.5 + (96 * xDiff);
+    this.group.getChildren().forEach((child, index) => {
+      yDiff = Math.floor(index / charactersPerRow);
+      xDiff = index % charactersPerRow;
+
+      const x = startX + (96 * xDiff);
       const y = height / heightDiff * (yDiff + 2);
       child.setPosition(x, y);
 

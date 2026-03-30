@@ -39,7 +39,7 @@ export default class UiScene extends Phaser.Scene {
     });
 
     // create inventory button
-    this.inventoryButton = this.add.image(50, this.scale.height - 50, 'inventoryButton').setInteractive();
+   /*  this.inventoryButton = this.add.image(50, this.scale.height - 50, 'inventoryButton').setInteractive();
     this.inventoryButton.setScale(2);
     this.inventoryButton.on('pointerdown', () => {
       this.toggleInventory(this.gameScene.player, true);
@@ -56,7 +56,7 @@ export default class UiScene extends Phaser.Scene {
         this.inventoryWindow.hideWindow();
         this.showInventory = false;
       }
-    });
+    }); */
   }
 
   setupEvents() {
