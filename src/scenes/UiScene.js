@@ -39,11 +39,11 @@ export default class UiScene extends Phaser.Scene {
     });
 
     // create inventory button
-   /*  this.inventoryButton = this.add.image(50, this.scale.height - 50, 'inventoryButton').setInteractive();
+ /*    this.inventoryButton = this.add.image(50, this.scale.height - 50, 'inventoryButton').setInteractive();
     this.inventoryButton.setScale(2);
     this.inventoryButton.on('pointerdown', () => {
       this.toggleInventory(this.gameScene.player, true);
-    });
+    }); */
 
     this.input.on('pointerdown', (pointer, gameObjects) => {
       if (!gameObjects.includes(this.inventoryWindow.rect)
@@ -56,7 +56,7 @@ export default class UiScene extends Phaser.Scene {
         this.inventoryWindow.hideWindow();
         this.showInventory = false;
       }
-    }); */
+    });
   }
 
   setupEvents() {
@@ -73,11 +73,11 @@ export default class UiScene extends Phaser.Scene {
   resize(gameSize) {
     if (this.inventoryWindow) this.inventoryWindow.resize(gameSize);
 
-    if (gameSize.width < 560) {
+/*     if (gameSize.width < 560) {
       this.inventoryButton.y = gameSize.height - 250;
     } else {
       this.inventoryButton.y = gameSize.height - 50;
-    }
+    } */
   }
 
   toggleInventory(playerObject, mainPlayer) {

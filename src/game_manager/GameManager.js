@@ -171,7 +171,7 @@ export default class GameManager {
     config.id = 'item';
     config.spawnerType = SpawnerType.ITEM;
     config.limit = 3;
-    config.spawnInterval = 2;
+    config.spawnInterval = 1000 * 60 * 5;
     spawner = new Spawner(
       config,
       this.itemLocations,
