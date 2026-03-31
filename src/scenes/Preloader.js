@@ -66,12 +66,12 @@ export class Preloader extends Phaser.Scene {
         this.load.audio('playerAttack', ['/audio/PlayerAttack.wav']);
         this.load.audio('playerDamage', ['/audio/PlayerDamage.wav']);
         this.load.audio('playerDeath', ['/audio/MaleDeath.mp3']);
-        this.load.audio('bgm1', ['/audio/HeartsOnFire.mp3']);
-        this.load.audio('bgm2', ['/audio/CriticalManeuvers.mp3']);
-        this.load.audio('bgm3', ['/audio/RushIntoAction.mp3']);
-        this.load.audio('bgm4', ['/audio/RivalsForever.mp3']);
+        this.load.audio('bgm1', ['/audio/RushIntoAction.mp3']);
+        this.load.audio('bgm2', ['/audio/EnemyAce.mp3']);
+        this.load.audio('bgm3', ['/audio/HeartsOnFire.mp3']);
+        this.load.audio('bgm4', ['/audio/CriticalManeuvers.mp3']);
         this.load.audio('bgm5', ['/audio/GunbladeDuel.mp3']);
-        this.load.audio('bgm6', ['/audio/EnemyAce.mp3']);
+        this.load.audio('bgm6', ['/audio/RivalsForever.mp3']);
     }
 
     loadTileMap() {
